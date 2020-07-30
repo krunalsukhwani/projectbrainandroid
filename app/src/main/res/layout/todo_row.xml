@@ -8,6 +8,16 @@
     android:layout_marginTop="5dp">
 
     <TextView
+        android:id="@+id/txtPostedBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        tools:text="Posted By: Human" />
+
+    <TextView
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,15 +48,6 @@
         android:layout_marginTop="5dp"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. \n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
 
-    <TextView
-        android:id="@+id/txtPostedBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        tools:text="Posted By: Human" />
 
     <LinearLayout
         android:layout_width="match_parent"

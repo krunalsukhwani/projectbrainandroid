@@ -152,6 +152,9 @@ public class TodoModel {
         @SerializedName("title")
         @Expose
         private String title;
+        @SerializedName("citeIdeaId")
+        @Expose
+        private String citeIdeaId;
         @SerializedName("context")
         @Expose
         private String context;
@@ -186,12 +189,30 @@ public class TodoModel {
             this.composer = composer;
         }
 
+        public Datum(Integer id, String citeIdeaId, String title, String context, String content, Composer composer) {
+            super();
+            this.id = id;
+            this.citeIdeaId = citeIdeaId;
+            this.title = title;
+            this.context = context;
+            this.content = content;
+            this.composer = composer;
+        }
+
         public Integer getId() {
             return id;
         }
 
         public void setId(Integer id) {
             this.id = id;
+        }
+
+        public String getCiteIdeaId() {
+            return citeIdeaId;
+        }
+
+        public void setCiteIdeaId(String citeIdeaId) {
+            this.citeIdeaId = citeIdeaId;
         }
 
         public String getTitle() {

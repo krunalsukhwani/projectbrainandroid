@@ -29,15 +29,19 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
-public class AddIdeaFragment extends Fragment implements View.OnClickListener {
+public class AddCiteIdeaFragment extends Fragment implements View.OnClickListener {
 
     private EditText editTitle;
     private EditText editContext;
     private EditText editContent;
     private Button buttonSubmit;
+    private String citeIdeaId;
+    private String title;
 
-    public static AddIdeaFragment newInstance() {
-        AddIdeaFragment fragment = new AddIdeaFragment();
+    public static AddCiteIdeaFragment newInstance(String citeIdeaId,String title) {
+        AddCiteIdeaFragment fragment = new AddCiteIdeaFragment();
+        fragment.citeIdeaId = citeIdeaId;
+        fragment.title = title;
         return fragment;
     }
 
@@ -59,6 +63,9 @@ public class AddIdeaFragment extends Fragment implements View.OnClickListener {
         editContent = view.findViewById(R.id.editContent);
         buttonSubmit = view.findViewById(R.id.buttonSubmit);
         buttonSubmit.setOnClickListener(this);
+        editContext.setText(""+title);
+        editContext.setEnabled(false);
+        editContext.setTextColor(getActivity().getResources().getColor(R.color.colorCite));
     }
 
     @Override
@@ -74,7 +81,7 @@ public class AddIdeaFragment extends Fragment implements View.OnClickListener {
         AsyncHttpClient client = new AsyncHttpClient();
         try {
             String username = new PreferenceManager(getActivity()).getUsername();
-            StringEntity entity = new StringEntity(RequestBodyUtil.addIdeaBody(username,editTitle.getText().toString(),editContent.getText().toString(),editContext.getText().toString()).toString());
+            StringEntity entity = new StringEntity(RequestBodyUtil.addCiteIdeaBody(username,citeIdeaId,editTitle.getText().toString(),editContent.getText().toString(),editContext.getText().toString()).toString());
             entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
             client.post(getActivity(), RequestUrl.ADD_IDEA_URL, entity, "application/json", new AsyncHttpResponseHandler() {

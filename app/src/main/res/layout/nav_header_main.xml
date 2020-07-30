@@ -16,6 +16,12 @@
         android:background="@color/buttonColor"
         android:text="Home" />
     <Button
+        android:id="@+id/buttonSearchIdea"
+        style="@style/editTextStyle"
+        android:layout_marginTop="15dp"
+        android:background="@color/buttonColor"
+        android:text="Search Idea By Title" />
+    <Button
         android:id="@+id/buttonAddNewIdea"
         style="@style/editTextStyle"
         android:layout_marginTop="15dp"

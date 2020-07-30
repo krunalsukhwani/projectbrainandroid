@@ -54,4 +54,18 @@ public class RequestBodyUtil {
         }
         return jsonParams;
     }
+
+    public static JSONObject addCiteIdeaBody(String username, String citeIdeaId,String title, String content, String context) {
+        JSONObject jsonParams = new JSONObject();
+        try {
+            jsonParams.put("username",username);
+            jsonParams.put("citeIdeaId",citeIdeaId);
+            jsonParams.put("title",title);
+            jsonParams.put("content",content);
+            jsonParams.put("context",context);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return jsonParams;
+    }
 }

@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.krunal.brain.Fragments.EditProfileFragment;
+import com.krunal.brain.Fragments.OldIdeaFragment;
 import com.krunal.brain.Models.IdeaModel;
 import com.krunal.brain.R;
 import com.krunal.brain.RequestUrl;
+import com.krunal.brain.drawer;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -53,25 +56,17 @@ public class IdeasAdapter extends RecyclerView.Adapter<IdeasAdapter.ViewHolder> 
         holder.txtContent.setText("" + userIdeaModel.getContent());
         holder.txtPostedBy.setText("Composed By: " + userIdeaModel.getComposer().getUsername());
 
-        holder.txtCite.setOnClickListener(new View.OnClickListener() {
+        if(!(""+userIdeaModel.getCiteIdeaId()).equals("null")){
+            holder.txtContext.setTextColor(((drawer)context).getResources().getColor(R.color.colorCite));
+        }
+
+        holder.txtContext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-
-        holder.txtToDo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-
-        holder.txtFollow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                if(!(""+userIdeaModel.getCiteIdeaId()).equals("null")){
+                    ((drawer)context).getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment,
+                            OldIdeaFragment.newInstance(userIdeaModel.getCiteIdeaId()), EditProfileFragment.class.getSimpleName()).commit();
+                }
             }
         });
 
@@ -124,7 +119,7 @@ public class IdeasAdapter extends RecyclerView.Adapter<IdeasAdapter.ViewHolder> 
             client.delete(context, RequestUrl.DELETE_IDEA_URL + "remove?id=" + id, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                    Toast.makeText(context, "Idea was Removed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Idea is Removed", Toast.LENGTH_SHORT).show();
 
                     arrayUserIdeas.remove(position);
                     notifyDataSetChanged();

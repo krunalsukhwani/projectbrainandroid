@@ -10,9 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.krunal.brain.Fragments.AddCiteIdeaFragment;
+import com.krunal.brain.Fragments.EditProfileFragment;
+import com.krunal.brain.Fragments.OldIdeaFragment;
 import com.krunal.brain.Models.IdeaModel;
 import com.krunal.brain.R;
 import com.krunal.brain.RequestUrl;
+import com.krunal.brain.drawer;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -54,7 +58,7 @@ public class HomeIdeaAdapter extends RecyclerView.Adapter<HomeIdeaAdapter.ViewHo
         holder.txtTitle.setText("" + userIdeaModel.getTitle());
         holder.txtContext.setText("" + userIdeaModel.getContext());
         holder.txtContent.setText("" + userIdeaModel.getContent());
-        holder.txtPostedBy.setText("Contributed By: " + userIdeaModel.getComposer().getUsername());
+        holder.txtPostedBy.setText("Composed By: " + userIdeaModel.getComposer().getUsername());
 
         if (userIdeaModel.getComposer().getUsername().equals("" + username)) {
             holder.txtCite.setVisibility(View.GONE);
@@ -66,12 +70,27 @@ public class HomeIdeaAdapter extends RecyclerView.Adapter<HomeIdeaAdapter.ViewHo
             holder.txtFollow.setVisibility(View.VISIBLE);
         }
 
-            holder.txtCite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        if(!(""+userIdeaModel.getCiteIdeaId()).equals("null")){
+            holder.txtContext.setTextColor(((drawer)context).getResources().getColor(R.color.colorCite));
+        }
 
+        holder.txtContext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!(""+userIdeaModel.getCiteIdeaId()).equals("null")){
+                    ((drawer)context).getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment,
+                            OldIdeaFragment.newInstance(userIdeaModel.getCiteIdeaId()), EditProfileFragment.class.getSimpleName()).commit();
                 }
-            });
+            }
+        });
+
+        holder.txtCite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((drawer)context).getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment,
+                        AddCiteIdeaFragment.newInstance(""+userIdeaModel.getId(),userIdeaModel.getTitle()), EditProfileFragment.class.getSimpleName()).commit();
+            }
+        });
 
         holder.txtToDo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +135,7 @@ public class HomeIdeaAdapter extends RecyclerView.Adapter<HomeIdeaAdapter.ViewHo
         }
     }
 
-    public void addFollow(String usernameToBeFollowed){
+    public void addFollow(final String usernameToBeFollowed){
         AsyncHttpClient client = new AsyncHttpClient();
         JSONObject jsonParams = new JSONObject();
         try {
@@ -133,7 +152,7 @@ public class HomeIdeaAdapter extends RecyclerView.Adapter<HomeIdeaAdapter.ViewHo
                         JSONObject json = new JSONObject(new String(responseBody));
                         Log.i("Register","responseBody: " + json.toString());
 
-                        Toast.makeText(context, "Followed selected user.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Followed "+usernameToBeFollowed+".", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

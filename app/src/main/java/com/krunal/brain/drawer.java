@@ -23,6 +23,7 @@ import com.krunal.brain.Fragments.AddIdeaFragment;
 import com.krunal.brain.Fragments.EditProfileFragment;
 import com.krunal.brain.Fragments.HomeIdeaFragment;
 import com.krunal.brain.Fragments.IdeasUserFragment;
+import com.krunal.brain.Fragments.SearchFragment;
 import com.krunal.brain.Fragments.TodoIdeasFragment;
 
 public class drawer extends AppCompatActivity implements View.OnClickListener{
@@ -34,6 +35,7 @@ public class drawer extends AppCompatActivity implements View.OnClickListener{
     private Button buttonUserToDo;
     private Button buttonUpdateProfile;
     private Button buttonSignOut;
+    private Button buttonSearchIdea;
     DrawerLayout drawer;
 
     @Override
@@ -71,8 +73,10 @@ public class drawer extends AppCompatActivity implements View.OnClickListener{
         buttonUserToDo = findViewById(R.id.buttonUserToDo);
         buttonUpdateProfile = findViewById(R.id.buttonUpdateProfile);
         buttonSignOut = findViewById(R.id.buttonSignOut);
+        buttonSearchIdea = findViewById(R.id.buttonSearchIdea);
 
         buttonHome.setOnClickListener(this);
+        buttonSearchIdea.setOnClickListener(this);
         buttonAddNewIdea.setOnClickListener(this);
         buttonUserIdea.setOnClickListener(this);
         buttonUserToDo.setOnClickListener(this);
@@ -103,6 +107,11 @@ public class drawer extends AppCompatActivity implements View.OnClickListener{
             case R.id.buttonHome:
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
                         HomeIdeaFragment.newInstance(), HomeIdeaFragment.class.getSimpleName()).commit();
+                drawer.closeDrawer(Gravity.START);
+                break;
+            case R.id.buttonSearchIdea:
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                        SearchFragment.newInstance(), AddIdeaFragment.class.getSimpleName()).commit();
                 drawer.closeDrawer(Gravity.START);
                 break;
             case R.id.buttonAddNewIdea:

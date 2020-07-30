@@ -4,35 +4,99 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+public class OldIdeaModel {
 
-public class IdeaModel {
-
-    @SerializedName("data")
+    @SerializedName("id")
     @Expose
-    private List<Datum> data = null;
+    private Integer id;
+    @SerializedName("citeIdeaId")
+    @Expose
+    private Object citeIdeaId;
+    @SerializedName("title")
+    @Expose
+    private String title;
+    @SerializedName("context")
+    @Expose
+    private String context;
+    @SerializedName("content")
+    @Expose
+    private String content;
+    @SerializedName("composer")
+    @Expose
+    private Composer composer;
 
     /**
      * No args constructor for use in serialization
      *
      */
-    public IdeaModel() {
+    public OldIdeaModel() {
     }
 
     /**
      *
-     * @param data
+     * @param citeIdeaId
+     * @param composer
+     * @param context
+     * @param id
+     * @param title
+     * @param content
      */
-    public IdeaModel(List<Datum> data) {
+    public OldIdeaModel(Integer id, Object citeIdeaId, String title, String context, String content, Composer composer) {
         super();
-        this.data = data;
+        this.id = id;
+        this.citeIdeaId = citeIdeaId;
+        this.title = title;
+        this.context = context;
+        this.content = content;
+        this.composer = composer;
     }
 
-    public List<Datum> getData() {
-        return data;
+    public Integer getId() {
+        return id;
     }
 
-    public void setData(List<Datum> data) {
-        this.data = data;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Object getCiteIdeaId() {
+        return citeIdeaId;
+    }
+
+    public void setCiteIdeaId(Object citeIdeaId) {
+        this.citeIdeaId = citeIdeaId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Composer getComposer() {
+        return composer;
+    }
+
+    public void setComposer(Composer composer) {
+        this.composer = composer;
     }
 
     public class Composer {
@@ -144,108 +208,5 @@ public class IdeaModel {
         }
 
     }
-    public class Datum {
 
-        @SerializedName("id")
-        @Expose
-        private Integer id;
-        @SerializedName("title")
-        @Expose
-        private String title;
-        @SerializedName("citeIdeaId")
-        @Expose
-        private String citeIdeaId;
-        @SerializedName("context")
-        @Expose
-        private String context;
-        @SerializedName("content")
-        @Expose
-        private String content;
-        @SerializedName("composer")
-        @Expose
-        private Composer composer;
-
-        /**
-         * No args constructor for use in serialization
-         *
-         */
-        public Datum() {
-        }
-
-        /**
-         *
-         * @param composer
-         * @param context
-         * @param id
-         * @param title
-         * @param content
-         */
-        public Datum(Integer id, String title, String context, String content, Composer composer) {
-            super();
-            this.id = id;
-            this.title = title;
-            this.context = context;
-            this.content = content;
-            this.composer = composer;
-        }
-
-        public Datum(Integer id, String citeIdeaId, String title, String context, String content, Composer composer) {
-            super();
-            this.id = id;
-            this.citeIdeaId = citeIdeaId;
-            this.title = title;
-            this.context = context;
-            this.content = content;
-            this.composer = composer;
-        }
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public String getCiteIdeaId() {
-            return citeIdeaId;
-        }
-
-        public void setCiteIdeaId(String citeIdeaId) {
-            this.citeIdeaId = citeIdeaId;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getContext() {
-            return context;
-        }
-
-        public void setContext(String context) {
-            this.context = context;
-        }
-
-        public String getContent() {
-            return content;
-        }
-
-        public void setContent(String content) {
-            this.content = content;
-        }
-
-        public Composer getComposer() {
-            return composer;
-        }
-
-        public void setComposer(Composer composer) {
-            this.composer = composer;
-        }
-
-    }
 }

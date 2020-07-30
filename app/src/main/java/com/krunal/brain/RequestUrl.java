@@ -7,6 +7,8 @@ public class RequestUrl {
     public static String ADD_IDEA_URL = "http://192.168.56.1:8080/ideas";
     public static String GET_TODO_URL = "http://192.168.56.1:8080/user/";
     public static String GET_IDEA_URL = "http://192.168.56.1:8080/user/";
+    public static String GET_IDEABYTITLE_URL = "http://192.168.56.1:8080/idea/";
+    public static String GET_IDEABYID_URL = "http://192.168.56.1:8080/idea/";
     public static String GET_ALL_IDEA_URL = "http://192.168.56.1:8080/ideas/";
     public static String ADD_TO_DO_URL = "http://192.168.56.1:8080/add/todo";
     public static String ADD_FOLLOW_USER_URL = "http://192.168.56.1:8080/user/follow";

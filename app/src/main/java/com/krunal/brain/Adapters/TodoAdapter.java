@@ -10,8 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.krunal.brain.Fragments.AddCiteIdeaFragment;
+import com.krunal.brain.Fragments.EditProfileFragment;
+import com.krunal.brain.Fragments.OldIdeaFragment;
 import com.krunal.brain.Models.TodoModel;
 import com.krunal.brain.R;
+import com.krunal.brain.drawer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,10 +55,25 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
         holder.txtToDo.setVisibility(View.GONE);
 
+        if(!(""+userIdeaModel.getCiteIdeaId()).equals("null")){
+            holder.txtContext.setTextColor(((drawer)context).getResources().getColor(R.color.colorCite));
+        }
+
+        holder.txtContext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!(""+userIdeaModel.getCiteIdeaId()).equals("null")){
+                    ((drawer)context).getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment,
+                            OldIdeaFragment.newInstance(userIdeaModel.getCiteIdeaId()), EditProfileFragment.class.getSimpleName()).commit();
+                }
+            }
+        });
+
         holder.txtCite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((drawer)context).getSupportFragmentManager().beginTransaction().add(R.id.nav_host_fragment,
+                        AddCiteIdeaFragment.newInstance(""+userIdeaModel.getId(),userIdeaModel.getTitle()), EditProfileFragment.class.getSimpleName()).commit();
             }
         });
 

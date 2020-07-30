@@ -104,10 +104,12 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                         Log.i("Update Profile","responseBody: " + registrationModel.getUsername());
 
                         new PreferenceManager(getActivity()).saveLoginData(registrationModel.getUsername(),
-                                registrationModel.getFirstname(), registrationModel.getFirstname(), registrationModel.getEmail(),
+                                registrationModel.getFirstname(), registrationModel.getLastname(), registrationModel.getEmail(),
                                 registrationModel.getLocation());
 
-                        Toast.makeText(getActivity(), "Updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Your profile is updated.", Toast.LENGTH_SHORT).show();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,
+                                HomeIdeaFragment.newInstance(), HomeIdeaFragment.class.getSimpleName()).commit();
 
                     } catch (JSONException e) {
                         e.printStackTrace();

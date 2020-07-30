@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Gson gson = new GsonBuilder().create();
                         LoginModel loginModel = gson.fromJson(new String(responseBody), LoginModel.class);
                         new PreferenceManager(LoginActivity.this).saveLoginData(loginModel.getUsername(),
-                                loginModel.getFirstname(), loginModel.getFirstname(), loginModel.getEmail(),
+                                loginModel.getFirstname(), loginModel.getLastname(), loginModel.getEmail(),
                                 loginModel.getLocation());
                         startActivity(new Intent(LoginActivity.this, drawer.class));
                         finish();
